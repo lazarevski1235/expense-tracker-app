@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transactions - Expense Tracker</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+    <span class="brand">Expense Tracker</span>
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html" class="active">Transactions</a>
+    <a href="transaction-form.html">Add Transaction</a>
+</nav>
+
+<main>
+    <h1>All Transactions</h1>
+
+    <form id="filterForm" method="get" action="transactions.html">
+        <label>From <input type="date" name="from" id="fromInput"></label>
+        <label>To <input type="date" name="to" id="toInput"></label>
+        <button type="submit">Filter</button>
+        <a href="transactions.html">Clear</a>
+    </form>
+
+    <table id="txTable">
+        <thead>
+            <tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Amount</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="txBody"></tbody>
+    </table>
+    <p id="txEmpty" style="display:none;">No transactions found.</p>
+
+</main>
+
+<script src="js/transactions.js"></script>
+</body>
+</html>

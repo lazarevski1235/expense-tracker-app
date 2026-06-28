@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav>
+    <span class="brand">Expense Tracker</span>
+    <a href="index.html">Dashboard</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="transaction-form.html">Add Transaction</a>
+</nav>
+
+<main>
+    <h1>Dashboard</h1>
+
+    <div class="toggle-bar">
+        <a href="index.html?view=monthly" id="monthlyLink">Monthly</a>
+        <a href="index.html?view=weekly" id="weeklyLink">Weekly</a>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <p class="card-label" id="incomeLabel">Income</p>
+            <p class="card-value" id="incomeValue">$0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-label" id="expenseLabel">Expenses</p>
+            <p class="card-value" id="expenseValue">$0.00</p>
+        </div>
+        <div class="card">
+            <p class="card-label" id="balanceLabel">Balance</p>
+            <p class="card-value" id="balanceValue">$0.00</p>
+        </div>
+    </div>
+
+    <div class="chart-box">
+        <h2 id="chartTitle">Chart</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h2>Expenses by Category — This Month</h2>
+        <canvas id="doughnutChart"></canvas>
+        <p id="doughnutEmpty" style="display:none;">No expense categories for this month yet.</p>
+    </div>
+
+    <h2>Recent Transactions</h2>
+    <table id="recentTable">
+        <thead>
+            <tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Amount</th></tr>
+        </thead>
+        <tbody id="recentBody"></tbody>
+    </table>
+    <p id="recentEmpty" style="display:none;">No transactions yet. <a href="transaction-form.html">Add your first one</a></p>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
