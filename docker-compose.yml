@@ -1,0 +1,35 @@
+services:
+  db-service:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-admin}
+      MONGO_INITDB_DATABASE: expensedb
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend-service:
+    build: ./backend
+    depends_on:
+      db-service:
+        condition: service_healthy
+    environment:
+      MONGO_USERNAME: ${MONGO_USERNAME:-admin}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:-admin}
+    ports:
+      - "8080:8080"
+
+  frontend-service:
+    build: ./frontend
+    depends_on:
+      - backend-service
+    ports:
+      - "80:80"
+
+volumes:
+  mongo_data:
