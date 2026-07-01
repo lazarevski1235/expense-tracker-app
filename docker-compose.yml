@@ -2,9 +2,9 @@ services:
   db-service:
     image: mongo:7
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME:-admin}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-admin}
-      MONGO_INITDB_DATABASE: expensedb
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
     volumes:
       - mongo_data:/data/db
     healthcheck:
@@ -19,8 +19,8 @@ services:
       db-service:
         condition: service_healthy
     environment:
-      MONGO_USERNAME: ${MONGO_USERNAME:-admin}
-      MONGO_PASSWORD: ${MONGO_PASSWORD:-admin}
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
     ports:
       - "8080:8080"
 
@@ -29,7 +29,7 @@ services:
     depends_on:
       - backend-service
     ports:
-      - "80:80"
+      - "1000:80"
 
 volumes:
   mongo_data:
